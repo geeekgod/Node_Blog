@@ -3,6 +3,8 @@ const express = require("express");
 // express app
 const app = express();
 
+app.set("view engine", "ejs");
+
 // listen for requests
 app.listen(process.env.PORT || 3000);
 
