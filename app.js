@@ -1,12 +1,17 @@
 const express = require("express");
+const morgan = require("morgan");
 
 // express app
 const app = express();
 
 app.set("view engine", "ejs");
-
+ 
 // listen for requests
 app.listen(process.env.PORT || 3000);
+
+app.use(express.static("public"));
+
+app.use(morgan("dev"));
 
 app.get("/", (req, res) => {
   const blogs = [
@@ -45,7 +50,6 @@ app.get("/about-us", (req, res) => {
 app.get("/create", (req, res) => {
   res.redirect("/blogs/create");
 });
-
 
 app.get("/create-blog", (req, res) => {
   res.redirect("/blogs/create");
