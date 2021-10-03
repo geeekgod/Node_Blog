@@ -9,7 +9,24 @@ app.set("view engine", "ejs");
 app.listen(process.env.PORT || 3000);
 
 app.get("/", (req, res) => {
-  res.render("index", { title: "Home" });
+  const blogs = [
+    {
+      title: "Title of an test blog. Title of an test blog.",
+      snippet:
+        "Lorem ispur dolor sit amet consectoruector. Lorem ispur dolor sit amet consectoruector.",
+    },
+    {
+      title: "Title of an test blog. Title of an test blog. 2",
+      snippet:
+        "Lorem ispur dolor sit amet consectoruector. Lorem ispur dolor sit amet consectoruector.",
+    },
+    {
+      title: "Title of an test blog. Title of an test blog. 3",
+      snippet:
+        "Lorem ispur dolor sit amet consectoruector. Lorem ispur dolor sit amet consectoruector.",
+    },
+  ];
+  res.render("index", { title: "Home", blogs });
 });
 
 app.get("/about", (req, res) => {
