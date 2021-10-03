@@ -9,11 +9,11 @@ app.set("view engine", "ejs");
 app.listen(process.env.PORT || 3000);
 
 app.get("/", (req, res) => {
-  res.render("index");
+  res.render("index", { title: "Home" });
 });
 
 app.get("/about", (req, res) => {
-  res.render("about");
+  res.render("about", { title: "About" });
 });
 
 // redirects
@@ -23,5 +23,5 @@ app.get("/about-us", (req, res) => {
 
 // 404 page
 app.use((req, res) => {
-    res.render("404");
+  res.render("404", { title: "404 Error" });
 });
