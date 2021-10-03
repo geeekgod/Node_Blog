@@ -4,8 +4,11 @@ const morgan = require("morgan");
 // express app
 const app = express();
 
+const dbURI =
+  "mongodb+srv://rishabh_singh:<password>@cluster0.yx8a6.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+
 app.set("view engine", "ejs");
- 
+
 // listen for requests
 app.listen(process.env.PORT || 3000);
 
