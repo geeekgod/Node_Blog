@@ -33,9 +33,22 @@ app.get("/about", (req, res) => {
   res.render("about", { title: "About" });
 });
 
+app.get("/blogs/create", (req, res) => {
+  res.render("create", { title: "Create Blog" });
+});
+
 // redirects
 app.get("/about-us", (req, res) => {
   res.redirect("/about");
+});
+
+app.get("/create", (req, res) => {
+  res.redirect("/blogs/create");
+});
+
+
+app.get("/create-blog", (req, res) => {
+  res.redirect("/blogs/create");
 });
 
 // 404 page
