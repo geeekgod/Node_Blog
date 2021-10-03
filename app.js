@@ -1,16 +1,25 @@
 const express = require("express");
 const morgan = require("morgan");
+const mongoose = require("mongoose");
 
 // express app
 const app = express();
 
 const dbURI =
-  "mongodb+srv://rishabh_singh:<password>@cluster0.yx8a6.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+  "mongodb+srv://rishabh_singh:Rekha12345678@cluster0.yx8a6.mongodb.net/Node-blogs?retryWrites=true&w=majority";
+
+mongoose
+  .connect(dbURI)
+  .then((res) => {
+    // listen for requests
+    app.listen(process.env.PORT || 3000);
+    console.log("connected to db", res);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
 app.set("view engine", "ejs");
-
-// listen for requests
-app.listen(process.env.PORT || 3000);
 
 app.use(express.static("public"));
 
