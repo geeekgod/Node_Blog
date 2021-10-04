@@ -53,13 +53,14 @@ app.get("/all-blogs", (req, res) => {
     });
 });
 
-app.get("/single-blog", (req, res) => {
-  Blog.findById("615b143ab9f49237ab49bcab")
+app.get("/blogs/:id", (req, res) => {
+  const id = req.params.id;
+  Blog.findById(id)
     .then((results) => {
-      res.send(results);
+      res.render("details", { blog: results, title: "Blog Details" });
     })
     .catch((err) => {
-      res.send(err);
+      console.log(err);
     });
 });
 
