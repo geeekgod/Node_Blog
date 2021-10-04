@@ -64,26 +64,12 @@ app.get("/single-blog", (req, res) => {
 });
 
 app.get("/", (req, res) => {
-  // const blogs = [
-  //   {
-  //     title: "Title of an test blog. Title of an test blog.",
-  //     snippet:
-  //       "Lorem ispur dolor sit amet consectoruector. Lorem ispur dolor sit amet consectoruector.",
-  //   },
-  //   {
-  //     title: "Title of an test blog. Title of an test blog. 2",
-  //     snippet:
-  //       "Lorem ispur dolor sit amet consectoruector. Lorem ispur dolor sit amet consectoruector.",
-  //   },
-  //   {
-  //     title: "Title of an test blog. Title of an test blog. 3",
-  //     snippet:
-  //       "Lorem ispur dolor sit amet consectoruector. Lorem ispur dolor sit amet consectoruector.",
-  //   },
-  // ];
-  // res.render("index", { title: "Home", blogs });
+  res.redirect("/blogs");
+});
 
+app.get("/blogs", (req, res) => {
   Blog.find()
+    .sort({ createdAt: -1 })
     .then((blogs) => {
       // res.send(results);
       res.render("index", { title: "Home", blogs });
