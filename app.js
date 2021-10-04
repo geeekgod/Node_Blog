@@ -32,27 +32,66 @@ app.get("/add-blog", (req, res) => {
     snippet: "About my Blog Snippet",
     body: "The body of my Blog",
   });
+
+  blog
+    .save()
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+});
+
+app.get("/all-blogs", (req, res) => {
+  Blog.find()
+    .then((results) => {
+      res.send(results);
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+});
+
+app.get("/single-blog", (req, res) => {
+  Blog.findById("615b143ab9f49237ab49bcab")
+    .then((results) => {
+      res.send(results);
+    })
+    .catch((err) => {
+      res.send(err);
+    });
 });
 
 app.get("/", (req, res) => {
-  const blogs = [
-    {
-      title: "Title of an test blog. Title of an test blog.",
-      snippet:
-        "Lorem ispur dolor sit amet consectoruector. Lorem ispur dolor sit amet consectoruector.",
-    },
-    {
-      title: "Title of an test blog. Title of an test blog. 2",
-      snippet:
-        "Lorem ispur dolor sit amet consectoruector. Lorem ispur dolor sit amet consectoruector.",
-    },
-    {
-      title: "Title of an test blog. Title of an test blog. 3",
-      snippet:
-        "Lorem ispur dolor sit amet consectoruector. Lorem ispur dolor sit amet consectoruector.",
-    },
-  ];
-  res.render("index", { title: "Home", blogs });
+  // const blogs = [
+  //   {
+  //     title: "Title of an test blog. Title of an test blog.",
+  //     snippet:
+  //       "Lorem ispur dolor sit amet consectoruector. Lorem ispur dolor sit amet consectoruector.",
+  //   },
+  //   {
+  //     title: "Title of an test blog. Title of an test blog. 2",
+  //     snippet:
+  //       "Lorem ispur dolor sit amet consectoruector. Lorem ispur dolor sit amet consectoruector.",
+  //   },
+  //   {
+  //     title: "Title of an test blog. Title of an test blog. 3",
+  //     snippet:
+  //       "Lorem ispur dolor sit amet consectoruector. Lorem ispur dolor sit amet consectoruector.",
+  //   },
+  // ];
+  // res.render("index", { title: "Home", blogs });
+
+  Blog.find()
+    .then((blogs) => {
+      // res.send(results);
+      res.render("index", { title: "Home", blogs });
+    })
+    .catch((err) => {
+      res.send(err);
+      // res.render("index", { title: "Home", blogs });
+    });
 });
 
 app.get("/about", (req, res) => {
